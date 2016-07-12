@@ -1,9 +1,11 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
+import javax.inject.Inject
 
-object Application extends Controller {
+import play.api.mvc.{Action, Controller}
+
+
+class Application @Inject() extends Controller {
 
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
