@@ -8,6 +8,8 @@ Play2WarPlugin.play2WarSettings
 
 Play2WarKeys.servletVersion := "3.1"
 
+Play2WarKeys.targetName := Some("azureplay")
+
 lazy val `azure_test_app` = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.7"
