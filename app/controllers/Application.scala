@@ -6,7 +6,7 @@ import play.api.mvc.{Action, Controller}
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
-class Application @Inject() (dao: DatabaseDao) extends Controller {
+class Application @Inject() (h2Dao: H2DatabaseDao, azDao: AzureDatabaseDao) extends Controller {
 
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
@@ -17,15 +17,27 @@ class Application @Inject() (dao: DatabaseDao) extends Controller {
   }
 
   def insert(id: Int, v: String) = Action.async {
-    dao.insert(Entity(id, v)).map(a => Ok(a.toString))
+    h2Dao.insert(Entity(id, v)).map(a => Ok(a.toString))
   }
 
   def get(id: Int) = Action.async {
-    dao.get(id).map(a => Ok(a.toString))
+    h2Dao.get(id).map(a => Ok(a.toString))
   }
 
   def list = Action.async {
-    dao.all.map(a => Ok(a.toString))
+    h2Dao.all.map(a => Ok(a.toString))
+  }
+
+  def azureInsert(id: Int, v: String) = Action.async {
+    azDao.insert(Entity(id, v)).map(a => Ok(a.toString))
+  }
+
+  def azureGet(id: Int) = Action.async {
+    azDao.get(id).map(a => Ok(a.toString))
+  }
+
+  def azureList = Action.async {
+    azDao.all.map(a => Ok(a.toString))
   }
 
 }

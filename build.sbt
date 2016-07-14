@@ -18,6 +18,7 @@ libraryDependencies ++= Seq( cache , ws   , specs2 % Test )
 
 libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.1.1",
+  "com.typesafe.slick" %% "slick-extensions" % "3.1.0",
   "com.typesafe.play" %% "play-slick" % "1.1.1",
   "com.typesafe.play" %% "play-slick-evolutions" % "1.1.1",
   "com.h2database" % "h2" % "1.3.176",

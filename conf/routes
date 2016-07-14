@@ -11,6 +11,10 @@ GET     /item                       controllers.Application.list
 GET     /item/:id                   controllers.Application.get(id: Int)
 PUT     /item/:id                   controllers.Application.insert(id: Int, v: String)
 
+GET     /azure-item                 controllers.Application.azureList
+GET     /azure-item/:id             controllers.Application.azureGet(id: Int)
+PUT     /azure-item/:id             controllers.Application.azureInsert(id: Int, v: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
