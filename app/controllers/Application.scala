@@ -2,18 +2,24 @@ package controllers
 
 import javax.inject.Inject
 
+import play.api.{Logger, Configuration}
 import play.api.mvc.{Action, Controller}
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
-class Application @Inject() (h2Dao: H2DatabaseDao, azDao: AzureDatabaseDao) extends Controller {
+class Application @Inject() (h2Dao: H2DatabaseDao, azDao: AzureDatabaseDao, configuration: Configuration) extends Controller {
 
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
   }
 
   def hello(name: Option[String]) = Action {
-    Ok(s"hello ${name.getOrElse("world!")}")
+    Logger.error("error")
+    Logger.warn("warn")
+    Logger.info("info")
+    Logger.debug("debug")
+    val default = configuration.getString("hello.default").get
+    Ok(s"hello ${name.getOrElse(default)}")
   }
 
   def insert(id: Int, v: String) = Action.async {
